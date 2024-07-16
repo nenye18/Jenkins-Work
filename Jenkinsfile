@@ -1,8 +1,7 @@
 pipeline {
     agent any
-    options {
-        // Timeout counter starts AFTER agent is allocated
-        timeout(time: 1, unit: 'SECONDS')
+    tools {
+        maven 'maven-3.9'
     }
     stages {
         stage('build') {
@@ -12,15 +11,23 @@ pipeline {
                 //sh 'npm build'
             }
         }
-        stage('test') {
+        stage('build image') {
             steps {
-                echo 'Hello, testing application'
+                echo 'building the application..'
+                //sh 'npm install'
+                //sh 'npm build'
             }
         }
-        stage('deploy') {
+      stage('test') {
+            steps {
+                echo 'Hello, testing application'
+                //sh 'npm test'
+            }
+        }
+    stage('deploy') {
             steps {
                 echo 'Hello, deploying application'
             }
         }
-    }
+   
 }
