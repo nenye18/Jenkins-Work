@@ -1,0 +1,395 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html class="gl-light ui-indigo with-top-bar " lang="en">
+<head prefix="og: http://ogp.me/ns#">
+<meta charset="utf-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>app/server.js · master · twn-devops-bootcamp / latest / 08-jenkins / jenkins-exercises · GitLab</title>
+<script nonce="e2Rx7TiPzn1vc2/kewdI6g==">
+//<![CDATA[
+window.gon={};gon.math_rendering_limits_enabled=true;gon.features={"explainCodeChat":false};gon.licensed_features={"remoteDevelopment":true};
+//]]>
+</script>
+<script nonce="e2Rx7TiPzn1vc2/kewdI6g==">
+//<![CDATA[
+window.uploads_path = "/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/uploads";
+
+
+
+//]]>
+</script>
+
+<script nonce="e2Rx7TiPzn1vc2/kewdI6g==">
+//<![CDATA[
+var gl = window.gl || {};
+gl.startup_calls = null;
+gl.startup_graphql_calls = [{"query":"query getBlobInfo(\n  $projectPath: ID!\n  $filePath: [String!]!\n  $ref: String!\n  $refType: RefType\n  $shouldFetchRawText: Boolean!\n) {\n  project(fullPath: $projectPath) {\n    __typename\n    id\n    repository {\n      __typename\n      empty\n      blobs(paths: $filePath, ref: $ref, refType: $refType) {\n        __typename\n        nodes {\n          __typename\n          id\n          webPath\n          name\n          size\n          rawSize\n          rawTextBlob @include(if: $shouldFetchRawText)\n          fileType\n          language\n          path\n          blamePath\n          editBlobPath\n          gitpodBlobUrl\n          ideEditPath\n          forkAndEditPath\n          ideForkAndEditPath\n          codeNavigationPath\n          projectBlobPathRoot\n          forkAndViewPath\n          environmentFormattedExternalUrl\n          environmentExternalUrlForRouteMap\n          canModifyBlob\n          canCurrentUserPushToBranch\n          archived\n          storedExternally\n          externalStorage\n          externalStorageUrl\n          rawPath\n          replacePath\n          pipelineEditorPath\n          simpleViewer {\n            fileType\n            tooLarge\n            type\n            renderError\n          }\n          richViewer {\n            fileType\n            tooLarge\n            type\n            renderError\n          }\n        }\n      }\n    }\n  }\n}\n","variables":{"projectPath":"twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises","ref":"master","refType":"HEADS","filePath":"app/server.js","shouldFetchRawText":true}}];
+
+if (gl.startup_calls && window.fetch) {
+  Object.keys(gl.startup_calls).forEach(apiCall => {
+   gl.startup_calls[apiCall] = {
+      fetchCall: fetch(apiCall, {
+        // Emulate XHR for Rails AJAX request checks
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        // fetch won’t send cookies in older browsers, unless you set the credentials init option.
+        // We set to `same-origin` which is default value in modern browsers.
+        // See https://github.com/whatwg/fetch/pull/585 for more information.
+        credentials: 'same-origin'
+      })
+    };
+  });
+}
+if (gl.startup_graphql_calls && window.fetch) {
+  const headers = {"X-CSRF-Token":"tEEVojtR9UW6KqSDwtNx0vsR9JXVHNa6_LuUMB5iQ38a7b0SnS9U9lWWmOcwy5eLcs2_etlM4Lya4gxtjtbtPw","x-gitlab-feature-category":"source_code_management"};
+  const url = `https://gitlab.com/api/graphql`
+
+  const opts = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      ...headers,
+    }
+  };
+
+  gl.startup_graphql_calls = gl.startup_graphql_calls.map(call => ({
+    ...call,
+    fetchCall: fetch(url, {
+      ...opts,
+      credentials: 'same-origin',
+      body: JSON.stringify(call)
+    })
+  }))
+}
+
+
+//]]>
+</script>
+
+<link rel="prefetch" href="/assets/webpack/monaco.79c0c060.chunk.js">
+
+<link rel="stylesheet" href="/assets/application-22918e5e48d718e0977422d6c63347ce3199ac16206c958518b968c239529900.css" media="all" />
+<link rel="stylesheet" href="/assets/page_bundles/tree-a237e29c78928e35b1336a49b7b8f58368c99e8d07d4108268e7015045ce9572.css" media="all" /><link rel="stylesheet" href="/assets/page_bundles/projects-96fb7ee62879b3c4fd19b2254784c0773ccb6312ae6d16a2f09cc06602ec2705.css" media="all" /><link rel="stylesheet" href="/assets/page_bundles/commit_description-5653213c51a6c90453a926cfc5e5e71ad9b41881a20a408bef8a303cf175435c.css" media="all" /><link rel="stylesheet" href="/assets/page_bundles/work_items-1a645abe79ac6548485568d8d034b67a35f8417ffba26e5da4b581e79dff7ba7.css" media="all" />
+<link rel="stylesheet" href="/assets/application_utilities-c247da426ffe491fd417dd8796665950d863e26a62e51fa7f7cc94b8dbb109f5.css" media="all" />
+<link rel="stylesheet" href="/assets/tailwind-47f87e61b7470d1de006dc1d8f0ef21a0dd2adf3569e485f9de0e33a5afdb7fd.css" media="all" />
+
+
+<link rel="stylesheet" href="/assets/fonts-fae5d3f79948bd85f18b6513a025f863b19636e85b09a1492907eb4b1bb0557b.css" media="all" />
+<link rel="stylesheet" href="/assets/highlight/themes/white-4e630d4cd339b5409eab2ddfb1ef5d66bb246024071ced5eba827c3d5c76ff62.css" media="all" />
+
+<script src="/assets/webpack/runtime.47b96778.bundle.js" defer="defer" nonce="e2Rx7TiPzn1vc2/kewdI6g=="></script>
+<script src="/assets/webpack/main.f6bc8b5a.chunk.js" defer="defer" nonce="e2Rx7TiPzn1vc2/kewdI6g=="></script>
+<script src="/assets/webpack/tracker.b84f9efe.chunk.js" defer="defer" nonce="e2Rx7TiPzn1vc2/kewdI6g=="></script>
+<script src="/assets/webpack/analytics.d8899000.chunk.js" defer="defer" nonce="e2Rx7TiPzn1vc2/kewdI6g=="></script>
+<script nonce="e2Rx7TiPzn1vc2/kewdI6g==">
+//<![CDATA[
+window.snowplowOptions = {"namespace":"gl","hostname":"snowplow.trx.gitlab.net","cookieDomain":".gitlab.com","appId":"gitlab","formTracking":true,"linkClickTracking":true}
+
+gl = window.gl || {};
+gl.snowplowStandardContext = {"schema":"iglu:com.gitlab/gitlab_standard/jsonschema/1-0-10","data":{"environment":"production","source":"gitlab-rails","plan":"free","extra":{},"user_id":9686269,"is_gitlab_team_member":false,"namespace_id":68262237,"project_id":47527779,"feature_enabled_by_namespace_ids":null,"context_generated_at":"2024-07-16T10:55:03.396Z"}}
+gl.snowplowPseudonymizedPageUrl = "https://gitlab.com/namespace68262237/project47527779/-/blob/:repository_path?ref_type=masked_ref_type";
+gl.maskedDefaultReferrerUrl = null;
+gl.ga4MeasurementId = 'G-ENFH3X7M5Y';
+
+
+//]]>
+</script>
+<link rel="preload" href="/assets/application_utilities-c247da426ffe491fd417dd8796665950d863e26a62e51fa7f7cc94b8dbb109f5.css" as="style" type="text/css" nonce="F6znjyJszLoSBCRcXOEKdw==">
+<link rel="preload" href="/assets/application-22918e5e48d718e0977422d6c63347ce3199ac16206c958518b968c239529900.css" as="style" type="text/css" nonce="F6znjyJszLoSBCRcXOEKdw==">
+<link rel="preload" href="/assets/highlight/themes/white-4e630d4cd339b5409eab2ddfb1ef5d66bb246024071ced5eba827c3d5c76ff62.css" as="style" type="text/css" nonce="F6znjyJszLoSBCRcXOEKdw==">
+<link crossorigin="" href="https://snowplow.trx.gitlab.net" rel="preconnect">
+<link as="font" crossorigin="" href="/assets/gitlab-sans/GitLabSans-1e0a5107ea3bbd4be93e8ad2c503467e43166cd37e4293570b490e0812ede98b.woff2" rel="preload">
+<link as="font" crossorigin="" href="/assets/gitlab-sans/GitLabSans-Italic-38eaf1a569a54ab28c58b92a4a8de3afb96b6ebc250cf372003a7b38151848cc.woff2" rel="preload">
+<link as="font" crossorigin="" href="/assets/gitlab-mono/GitLabMono-08d2c5e8ff8fd3d2d6ec55bc7713380f8981c35f9d2df14e12b835464d6e8f23.woff2" rel="preload">
+<link as="font" crossorigin="" href="/assets/gitlab-mono/GitLabMono-Italic-38e58d8df29485a20c550da1d0111e2c2169f6dcbcf894f2cd3afbdd97bcc588.woff2" rel="preload">
+<link rel="preload" href="/assets/fonts-fae5d3f79948bd85f18b6513a025f863b19636e85b09a1492907eb4b1bb0557b.css" as="style" type="text/css" nonce="F6znjyJszLoSBCRcXOEKdw==">
+
+
+
+<script src="/assets/webpack/sentry.14b97a9d.chunk.js" defer="defer" nonce="e2Rx7TiPzn1vc2/kewdI6g=="></script>
+
+
+<script src="/assets/webpack/commons-pages.admin.abuse_reports.show-pages.dashboard.issues-pages.dashboard.milestones.show-pages.-6eb574d2.a7cf8c27.chunk.js" defer="defer" nonce="e2Rx7TiPzn1vc2/kewdI6g=="></script>
+<script src="/assets/webpack/commons-pages.admin.abuse_reports.show-pages.dashboard.issues-pages.groups.boards-pages.groups.epic_-fa225b42.28d98c9d.chunk.js" defer="defer" nonce="e2Rx7TiPzn1vc2/kewdI6g=="></script>
+<script src="/assets/webpack/commons-pages.admin.abuse_reports.show-pages.dashboard.issues-pages.groups.boards-pages.groups.epic_-67fb21ec.298d3f3c.chunk.js" defer="defer" nonce="e2Rx7TiPzn1vc2/kewdI6g=="></script>
+<script src="/assets/webpack/commons-pages.groups.analytics.dashboards-pages.groups.analytics.dashboards.value_streams_dashboard--844b062c.958263f7.chunk.js" defer="defer" nonce="e2Rx7TiPzn1vc2/kewdI6g=="></script>
+<script src="/assets/webpack/commons-pages.groups.new-pages.import.gitlab_projects.new-pages.import.manifest.new-pages.projects.n-a0973272.3b836268.chunk.js" defer="defer" nonce="e2Rx7TiPzn1vc2/kewdI6g=="></script>
+<script src="/assets/webpack/commons-pages.search.show-super_sidebar.06a115ab.chunk.js" defer="defer" nonce="e2Rx7TiPzn1vc2/kewdI6g=="></script>
+<script src="/assets/webpack/super_sidebar.129c8363.chunk.js" defer="defer" nonce="e2Rx7TiPzn1vc2/kewdI6g=="></script>
+<script src="/assets/webpack/commons-pages.projects-pages.projects.activity-pages.projects.alert_management.details-pages.project-6c5bf499.0cde1033.chunk.js" defer="defer" nonce="e2Rx7TiPzn1vc2/kewdI6g=="></script>
+<script src="/assets/webpack/commons-pages.admin.runners.show-pages.clusters.agents.dashboard-pages.dashboard.groups.index-pages.-5cdfa256.207262fa.chunk.js" defer="defer" nonce="e2Rx7TiPzn1vc2/kewdI6g=="></script>
+<script src="/assets/webpack/117.0a041e9e.chunk.js" defer="defer" nonce="e2Rx7TiPzn1vc2/kewdI6g=="></script>
+<script src="/assets/webpack/commons-pages.projects.blob.show-pages.projects.show-pages.projects.snippets.show-pages.projects.tre-c684fcf6.c3b5a92e.chunk.js" defer="defer" nonce="e2Rx7TiPzn1vc2/kewdI6g=="></script>
+<script src="/assets/webpack/139.c99b3395.chunk.js" defer="defer" nonce="e2Rx7TiPzn1vc2/kewdI6g=="></script>
+<script src="/assets/webpack/commons-pages.projects.blob.show-pages.projects.security.vulnerabilities.show-pages.projects.show-pa-5ff3b950.21702d27.chunk.js" defer="defer" nonce="e2Rx7TiPzn1vc2/kewdI6g=="></script>
+<script src="/assets/webpack/commons-pages.projects.blob.show-pages.projects.show-pages.projects.tree.show.7123d3ed.chunk.js" defer="defer" nonce="e2Rx7TiPzn1vc2/kewdI6g=="></script>
+<script src="/assets/webpack/commons-pages.projects.blob.show-pages.projects.commits.show-pages.projects.compare.show.8f83c28f.chunk.js" defer="defer" nonce="e2Rx7TiPzn1vc2/kewdI6g=="></script>
+<script src="/assets/webpack/pages.projects.blob.show.8e9cb51d.chunk.js" defer="defer" nonce="e2Rx7TiPzn1vc2/kewdI6g=="></script>
+<meta content="object" property="og:type">
+<meta content="GitLab" property="og:site_name">
+<meta content="app/server.js · master · twn-devops-bootcamp / latest / 08-jenkins / jenkins-exercises · GitLab" property="og:title">
+<meta content="GitLab.com" property="og:description">
+<meta content="https://gitlab.com/assets/twitter_card-570ddb06edf56a2312253c5872489847a0f385112ddbcd71ccfa1570febab5d2.jpg" property="og:image">
+<meta content="64" property="og:image:width">
+<meta content="64" property="og:image:height">
+<meta content="https://gitlab.com/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/blob/master/app/server.js?ref_type=heads" property="og:url">
+<meta content="summary" property="twitter:card">
+<meta content="app/server.js · master · twn-devops-bootcamp / latest / 08-jenkins / jenkins-exercises · GitLab" property="twitter:title">
+<meta content="GitLab.com" property="twitter:description">
+<meta content="https://gitlab.com/assets/twitter_card-570ddb06edf56a2312253c5872489847a0f385112ddbcd71ccfa1570febab5d2.jpg" property="twitter:image">
+
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="8N9PFuAobla0-0rkcZsB1aQ8UFJNO2pBadasNPKOkEBec-emRlbP5VtHdoCDg-eMLeAbvUFrXEcPjzRpYjo-AA" />
+<meta name="csp-nonce" content="e2Rx7TiPzn1vc2/kewdI6g==" />
+<meta name="action-cable-url" content="/-/cable" />
+<link href="/-/manifest.json" rel="manifest">
+<link rel="icon" type="image/png" href="/assets/favicon-yellow-018213ceb87b472388095d0264be5b4319ef47471dacea03c83ecc233ced2fd5.png" id="favicon" data-original-href="/assets/favicon-yellow-018213ceb87b472388095d0264be5b4319ef47471dacea03c83ecc233ced2fd5.png" />
+<link rel="apple-touch-icon" type="image/x-icon" href="/assets/apple-touch-icon-b049d4bc0dd9626f31db825d61880737befc7835982586d015bded10b4435460.png" />
+<link href="/search/opensearch.xml" rel="search" title="Search GitLab" type="application/opensearchdescription+xml">
+
+
+
+
+<meta content="GitLab.com" name="description">
+<meta content="#222261" name="theme-color">
+</head>
+
+<body class="tab-width-8 gl-browser-safari gl-platform-mac " data-find-file="/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/find_file/master?ref_type=heads" data-group="08-jenkins" data-group-full-path="twn-devops-bootcamp/latest/08-jenkins" data-namespace-id="68262237" data-page="projects:blob:show" data-page-type-id="master/app/server.js" data-project="jenkins-exercises" data-project-full-path="twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises" data-project-id="47527779">
+
+<script nonce="e2Rx7TiPzn1vc2/kewdI6g==">
+//<![CDATA[
+gl = window.gl || {};
+gl.client = {"isSafari":true,"isMac":true};
+
+
+//]]>
+</script>
+
+
+<div class="layout-page page-with-super-sidebar">
+<aside class="js-super-sidebar super-sidebar super-sidebar-loading" data-command-palette="{&quot;project_files_url&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/files/master?format=json&quot;,&quot;project_blob_url&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/blob/master&quot;}" data-force-desktop-expanded-sidebar="" data-root-path="/" data-sidebar="{&quot;is_logged_in&quot;:true,&quot;context_switcher_links&quot;:[{&quot;title&quot;:&quot;Your work&quot;,&quot;link&quot;:&quot;/&quot;,&quot;icon&quot;:&quot;work&quot;},{&quot;title&quot;:&quot;Explore&quot;,&quot;link&quot;:&quot;/explore&quot;,&quot;icon&quot;:&quot;compass&quot;},{&quot;title&quot;:&quot;Profile&quot;,&quot;link&quot;:&quot;/-/user_settings/profile&quot;,&quot;icon&quot;:&quot;profile&quot;},{&quot;title&quot;:&quot;Preferences&quot;,&quot;link&quot;:&quot;/-/profile/preferences&quot;,&quot;icon&quot;:&quot;preferences&quot;}],&quot;current_menu_items&quot;:[{&quot;id&quot;:&quot;project_overview&quot;,&quot;title&quot;:&quot;jenkins-exercises&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:47527779,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:&quot;shortcuts-project&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;manage_menu&quot;,&quot;title&quot;:&quot;Manage&quot;,&quot;icon&quot;:&quot;users&quot;,&quot;avatar&quot;:null,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/activity&quot;,&quot;is_active&quot;:false,&quot;pill_count&quot;:null,&quot;items&quot;:[{&quot;id&quot;:&quot;activity&quot;,&quot;title&quot;:&quot;Activity&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/activity&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:&quot;shortcuts-project-activity&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;members&quot;,&quot;title&quot;:&quot;Members&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/project_members&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:null,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;labels&quot;,&quot;title&quot;:&quot;Labels&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/labels&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:null,&quot;is_active&quot;:false}],&quot;separated&quot;:false},{&quot;id&quot;:&quot;plan_menu&quot;,&quot;title&quot;:&quot;Plan&quot;,&quot;icon&quot;:&quot;planning&quot;,&quot;avatar&quot;:null,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/issues&quot;,&quot;is_active&quot;:false,&quot;pill_count&quot;:null,&quot;items&quot;:[{&quot;id&quot;:&quot;project_issue_list&quot;,&quot;title&quot;:&quot;Issues&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/issues&quot;,&quot;pill_count&quot;:&quot;0&quot;,&quot;link_classes&quot;:&quot;shortcuts-issues has-sub-items&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;boards&quot;,&quot;title&quot;:&quot;Issue boards&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/boards&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:&quot;shortcuts-issue-boards&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;milestones&quot;,&quot;title&quot;:&quot;Milestones&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/milestones&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:null,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;project_wiki&quot;,&quot;title&quot;:&quot;Wiki&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/wikis/home&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:&quot;shortcuts-wiki&quot;,&quot;is_active&quot;:false}],&quot;separated&quot;:false},{&quot;id&quot;:&quot;code_menu&quot;,&quot;title&quot;:&quot;Code&quot;,&quot;icon&quot;:&quot;code&quot;,&quot;avatar&quot;:null,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/merge_requests&quot;,&quot;is_active&quot;:true,&quot;pill_count&quot;:null,&quot;items&quot;:[{&quot;id&quot;:&quot;project_merge_request_list&quot;,&quot;title&quot;:&quot;Merge requests&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/merge_requests&quot;,&quot;pill_count&quot;:&quot;0&quot;,&quot;link_classes&quot;:&quot;shortcuts-merge_requests&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;files&quot;,&quot;title&quot;:&quot;Repository&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/tree/master&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:&quot;shortcuts-tree&quot;,&quot;is_active&quot;:true},{&quot;id&quot;:&quot;branches&quot;,&quot;title&quot;:&quot;Branches&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/branches&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:null,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;commits&quot;,&quot;title&quot;:&quot;Commits&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/commits/master?ref_type=heads&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:&quot;shortcuts-commits&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;tags&quot;,&quot;title&quot;:&quot;Tags&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/tags&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:null,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;graphs&quot;,&quot;title&quot;:&quot;Repository graph&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/network/master?ref_type=heads&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:&quot;shortcuts-network&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;compare&quot;,&quot;title&quot;:&quot;Compare revisions&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/compare?from=master\u0026to=master&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:null,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;project_snippets&quot;,&quot;title&quot;:&quot;Snippets&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/snippets&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:&quot;shortcuts-snippets&quot;,&quot;is_active&quot;:false}],&quot;separated&quot;:false},{&quot;id&quot;:&quot;build_menu&quot;,&quot;title&quot;:&quot;Build&quot;,&quot;icon&quot;:&quot;rocket&quot;,&quot;avatar&quot;:null,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/pipelines&quot;,&quot;is_active&quot;:false,&quot;pill_count&quot;:null,&quot;items&quot;:[{&quot;id&quot;:&quot;pipelines&quot;,&quot;title&quot;:&quot;Pipelines&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/pipelines&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:&quot;shortcuts-pipelines&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;jobs&quot;,&quot;title&quot;:&quot;Jobs&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/jobs&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:&quot;shortcuts-builds&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;pipeline_schedules&quot;,&quot;title&quot;:&quot;Pipeline schedules&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/pipeline_schedules&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:&quot;shortcuts-builds&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;artifacts&quot;,&quot;title&quot;:&quot;Artifacts&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/artifacts&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:&quot;shortcuts-builds&quot;,&quot;is_active&quot;:false}],&quot;separated&quot;:false},{&quot;id&quot;:&quot;deploy_menu&quot;,&quot;title&quot;:&quot;Deploy&quot;,&quot;icon&quot;:&quot;deployments&quot;,&quot;avatar&quot;:null,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/releases&quot;,&quot;is_active&quot;:false,&quot;pill_count&quot;:null,&quot;items&quot;:[{&quot;id&quot;:&quot;releases&quot;,&quot;title&quot;:&quot;Releases&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/releases&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:&quot;shortcuts-deployments-releases&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;packages_registry&quot;,&quot;title&quot;:&quot;Package Registry&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/packages&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:&quot;shortcuts-container-registry&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;container_registry&quot;,&quot;title&quot;:&quot;Container Registry&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/container_registry&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:null,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;model_registry&quot;,&quot;title&quot;:&quot;Model registry&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/ml/models&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:null,&quot;is_active&quot;:false}],&quot;separated&quot;:false},{&quot;id&quot;:&quot;operations_menu&quot;,&quot;title&quot;:&quot;Operate&quot;,&quot;icon&quot;:&quot;cloud-pod&quot;,&quot;avatar&quot;:null,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/environments&quot;,&quot;is_active&quot;:false,&quot;pill_count&quot;:null,&quot;items&quot;:[{&quot;id&quot;:&quot;environments&quot;,&quot;title&quot;:&quot;Environments&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/environments&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:&quot;shortcuts-environments&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;infrastructure_registry&quot;,&quot;title&quot;:&quot;Terraform modules&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/terraform_module_registry&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:null,&quot;is_active&quot;:false}],&quot;separated&quot;:false},{&quot;id&quot;:&quot;monitor_menu&quot;,&quot;title&quot;:&quot;Monitor&quot;,&quot;icon&quot;:&quot;monitor&quot;,&quot;avatar&quot;:null,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/incidents&quot;,&quot;is_active&quot;:false,&quot;pill_count&quot;:null,&quot;items&quot;:[{&quot;id&quot;:&quot;incidents&quot;,&quot;title&quot;:&quot;Incidents&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/incidents&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:null,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;service_desk&quot;,&quot;title&quot;:&quot;Service Desk&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/issues/service_desk&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:null,&quot;is_active&quot;:false}],&quot;separated&quot;:false},{&quot;id&quot;:&quot;analyze_menu&quot;,&quot;title&quot;:&quot;Analyze&quot;,&quot;icon&quot;:&quot;chart&quot;,&quot;avatar&quot;:null,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/value_stream_analytics&quot;,&quot;is_active&quot;:false,&quot;pill_count&quot;:null,&quot;items&quot;:[{&quot;id&quot;:&quot;cycle_analytics&quot;,&quot;title&quot;:&quot;Value stream analytics&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/value_stream_analytics&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:&quot;shortcuts-project-cycle-analytics&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;contributors&quot;,&quot;title&quot;:&quot;Contributor analytics&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/graphs/master?ref_type=heads&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:null,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;ci_cd_analytics&quot;,&quot;title&quot;:&quot;CI/CD analytics&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/pipelines/charts&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:null,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;repository_analytics&quot;,&quot;title&quot;:&quot;Repository analytics&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/graphs/master/charts&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:&quot;shortcuts-repository-charts&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;model_experiments&quot;,&quot;title&quot;:&quot;Model experiments&quot;,&quot;icon&quot;:null,&quot;avatar&quot;:null,&quot;entity_id&quot;:null,&quot;link&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/ml/experiments&quot;,&quot;pill_count&quot;:null,&quot;link_classes&quot;:null,&quot;is_active&quot;:false}],&quot;separated&quot;:false}],&quot;current_context_header&quot;:&quot;Project&quot;,&quot;support_path&quot;:&quot;https://about.gitlab.com/get-help/&quot;,&quot;docs_path&quot;:&quot;/help/docs&quot;,&quot;display_whats_new&quot;:true,&quot;whats_new_most_recent_release_items_count&quot;:7,&quot;whats_new_version_digest&quot;:&quot;48f0954709a6c67a67281dc64a482f8793143a5f90b37653d5fe82bcbb697b5c&quot;,&quot;show_version_check&quot;:false,&quot;gitlab_version&quot;:{&quot;major&quot;:17,&quot;minor&quot;:2,&quot;patch&quot;:0,&quot;suffix_s&quot;:&quot;&quot;},&quot;gitlab_version_check&quot;:null,&quot;search&quot;:{&quot;search_path&quot;:&quot;/search&quot;,&quot;issues_path&quot;:&quot;/dashboard/issues&quot;,&quot;mr_path&quot;:&quot;/dashboard/merge_requests&quot;,&quot;autocomplete_path&quot;:&quot;/search/autocomplete&quot;,&quot;settings_path&quot;:&quot;/search/settings&quot;,&quot;search_context&quot;:{&quot;group&quot;:{&quot;id&quot;:68262237,&quot;name&quot;:&quot;08-jenkins&quot;,&quot;full_name&quot;:&quot;twn-devops-bootcamp / latest / 08-jenkins&quot;},&quot;group_metadata&quot;:{&quot;issues_path&quot;:&quot;/groups/twn-devops-bootcamp/latest/08-jenkins/-/issues&quot;,&quot;mr_path&quot;:&quot;/groups/twn-devops-bootcamp/latest/08-jenkins/-/merge_requests&quot;},&quot;project&quot;:{&quot;id&quot;:47527779,&quot;name&quot;:&quot;jenkins-exercises&quot;},&quot;project_metadata&quot;:{&quot;mr_path&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/merge_requests&quot;,&quot;issues_path&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/issues&quot;},&quot;code_search&quot;:true,&quot;ref&quot;:&quot;master&quot;,&quot;scope&quot;:null,&quot;for_snippets&quot;:null}},&quot;panel_type&quot;:&quot;project&quot;,&quot;shortcut_links&quot;:[{&quot;title&quot;:&quot;Milestones&quot;,&quot;href&quot;:&quot;/dashboard/milestones&quot;,&quot;css_class&quot;:&quot;dashboard-shortcuts-milestones&quot;},{&quot;title&quot;:&quot;Snippets&quot;,&quot;href&quot;:&quot;/dashboard/snippets&quot;,&quot;css_class&quot;:&quot;dashboard-shortcuts-snippets&quot;},{&quot;title&quot;:&quot;Activity&quot;,&quot;href&quot;:&quot;/dashboard/activity&quot;,&quot;css_class&quot;:&quot;dashboard-shortcuts-activity&quot;},{&quot;title&quot;:&quot;Groups&quot;,&quot;href&quot;:&quot;/dashboard/groups&quot;,&quot;css_class&quot;:&quot;dashboard-shortcuts-groups&quot;},{&quot;title&quot;:&quot;Projects&quot;,&quot;href&quot;:&quot;/dashboard/projects&quot;,&quot;css_class&quot;:&quot;dashboard-shortcuts-projects&quot;},{&quot;title&quot;:&quot;Create a new issue&quot;,&quot;href&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/issues/new&quot;,&quot;css_class&quot;:&quot;shortcuts-new-issue&quot;}],&quot;is_admin&quot;:false,&quot;name&quot;:&quot;Chinenye&quot;,&quot;username&quot;:&quot;chinenye.nw&quot;,&quot;admin_url&quot;:&quot;https://gitlab.com/admin&quot;,&quot;admin_mode&quot;:{&quot;admin_mode_feature_enabled&quot;:false,&quot;admin_mode_active&quot;:false,&quot;enter_admin_mode_url&quot;:&quot;/admin/session/new&quot;,&quot;leave_admin_mode_url&quot;:&quot;/admin/session/destroy&quot;,&quot;user_is_admin&quot;:false},&quot;avatar_url&quot;:&quot;https://secure.gravatar.com/avatar/afe183cef0b5f77427d2f326d998c303e2ec339d66b1390c3c0c549361272c1f?s=80\u0026d=identicon&quot;,&quot;has_link_to_profile&quot;:true,&quot;link_to_profile&quot;:&quot;/chinenye.nw&quot;,&quot;logo_url&quot;:null,&quot;status&quot;:{&quot;can_update&quot;:true,&quot;busy&quot;:null,&quot;customized&quot;:null,&quot;availability&quot;:&quot;&quot;,&quot;emoji&quot;:null,&quot;message_html&quot;:null,&quot;message&quot;:null,&quot;clear_after&quot;:null},&quot;settings&quot;:{&quot;has_settings&quot;:true,&quot;profile_path&quot;:&quot;/-/user_settings/profile&quot;,&quot;profile_preferences_path&quot;:&quot;/-/profile/preferences&quot;},&quot;user_counts&quot;:{&quot;assigned_issues&quot;:0,&quot;assigned_merge_requests&quot;:1,&quot;review_requested_merge_requests&quot;:0,&quot;todos&quot;:0,&quot;last_update&quot;:1721127303480},&quot;can_sign_out&quot;:true,&quot;sign_out_link&quot;:&quot;/users/sign_out&quot;,&quot;issues_dashboard_path&quot;:&quot;/dashboard/issues?assignee_username=chinenye.nw&quot;,&quot;merge_request_dashboard_path&quot;:null,&quot;todos_dashboard_path&quot;:&quot;/dashboard/todos&quot;,&quot;create_new_menu_groups&quot;:[{&quot;name&quot;:&quot;In this project&quot;,&quot;items&quot;:[{&quot;text&quot;:&quot;New issue&quot;,&quot;href&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/issues/new&quot;,&quot;component&quot;:null,&quot;extraAttrs&quot;:{&quot;data-track-label&quot;:&quot;new_issue&quot;,&quot;data-track-action&quot;:&quot;click_link&quot;,&quot;data-track-property&quot;:&quot;nav_create_menu&quot;,&quot;data-testid&quot;:&quot;create_menu_item&quot;,&quot;data-qa-create-menu-item&quot;:&quot;new_issue&quot;}}]},{&quot;name&quot;:&quot;In GitLab&quot;,&quot;items&quot;:[{&quot;text&quot;:&quot;New project/repository&quot;,&quot;href&quot;:&quot;/projects/new&quot;,&quot;component&quot;:null,&quot;extraAttrs&quot;:{&quot;data-track-label&quot;:&quot;general_new_project&quot;,&quot;data-track-action&quot;:&quot;click_link&quot;,&quot;data-track-property&quot;:&quot;nav_create_menu&quot;,&quot;data-testid&quot;:&quot;create_menu_item&quot;,&quot;data-qa-create-menu-item&quot;:&quot;general_new_project&quot;}},{&quot;text&quot;:&quot;New group&quot;,&quot;href&quot;:&quot;/groups/new&quot;,&quot;component&quot;:null,&quot;extraAttrs&quot;:{&quot;data-track-label&quot;:&quot;general_new_group&quot;,&quot;data-track-action&quot;:&quot;click_link&quot;,&quot;data-track-property&quot;:&quot;nav_create_menu&quot;,&quot;data-testid&quot;:&quot;create_menu_item&quot;,&quot;data-qa-create-menu-item&quot;:&quot;general_new_group&quot;}},{&quot;text&quot;:&quot;New snippet&quot;,&quot;href&quot;:&quot;/-/snippets/new&quot;,&quot;component&quot;:null,&quot;extraAttrs&quot;:{&quot;data-track-label&quot;:&quot;general_new_snippet&quot;,&quot;data-track-action&quot;:&quot;click_link&quot;,&quot;data-track-property&quot;:&quot;nav_create_menu&quot;,&quot;data-testid&quot;:&quot;create_menu_item&quot;,&quot;data-qa-create-menu-item&quot;:&quot;general_new_snippet&quot;}}]}],&quot;merge_request_menu&quot;:[{&quot;name&quot;:&quot;Merge requests&quot;,&quot;items&quot;:[{&quot;text&quot;:&quot;Assigned&quot;,&quot;href&quot;:&quot;/dashboard/merge_requests?assignee_username=chinenye.nw&quot;,&quot;count&quot;:1,&quot;userCount&quot;:&quot;assigned_merge_requests&quot;,&quot;extraAttrs&quot;:{&quot;data-track-action&quot;:&quot;click_link&quot;,&quot;data-track-label&quot;:&quot;merge_requests_assigned&quot;,&quot;data-track-property&quot;:&quot;nav_core_menu&quot;,&quot;class&quot;:&quot;dashboard-shortcuts-merge_requests&quot;}},{&quot;text&quot;:&quot;Review requests&quot;,&quot;href&quot;:&quot;/dashboard/merge_requests?reviewer_username=chinenye.nw&quot;,&quot;count&quot;:0,&quot;userCount&quot;:&quot;review_requested_merge_requests&quot;,&quot;extraAttrs&quot;:{&quot;data-track-action&quot;:&quot;click_link&quot;,&quot;data-track-label&quot;:&quot;merge_requests_to_review&quot;,&quot;data-track-property&quot;:&quot;nav_core_menu&quot;,&quot;class&quot;:&quot;dashboard-shortcuts-review_requests&quot;}}]}],&quot;projects_path&quot;:&quot;/dashboard/projects&quot;,&quot;groups_path&quot;:&quot;/dashboard/groups&quot;,&quot;gitlab_com_but_not_canary&quot;:false,&quot;gitlab_com_and_canary&quot;:true,&quot;canary_toggle_com_url&quot;:&quot;https://next.gitlab.com&quot;,&quot;current_context&quot;:{&quot;namespace&quot;:&quot;projects&quot;,&quot;item&quot;:{&quot;id&quot;:47527779,&quot;name&quot;:&quot;jenkins-exercises&quot;,&quot;namespace&quot;:&quot;twn-devops-bootcamp / latest / 08-jenkins / jenkins-exercises&quot;,&quot;webUrl&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises&quot;,&quot;avatarUrl&quot;:null}},&quot;pinned_items&quot;:[&quot;project_issue_list&quot;,&quot;project_merge_request_list&quot;],&quot;update_pins_url&quot;:&quot;/-/users/pins&quot;,&quot;is_impersonating&quot;:false,&quot;stop_impersonation_path&quot;:&quot;/admin/impersonation&quot;,&quot;track_visits_path&quot;:&quot;/-/track_namespace_visits&quot;,&quot;work_items&quot;:null,&quot;show_tanuki_bot&quot;:false,&quot;trial&quot;:{&quot;has_start_trial&quot;:false,&quot;url&quot;:&quot;/-/trials/new?glm_content=top-right-dropdown\u0026glm_source=gitlab.com&quot;}}"></aside>
+
+<div class="content-wrapper">
+
+<div class="alert-wrapper gl-force-block-formatting-context">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="top-bar-fixed container-fluid" data-testid="top-bar">
+<div class="top-bar-container gl-display-flex gl-align-items-center gl-gap-2">
+<button class="gl-button btn btn-icon btn-md btn-default btn-default-tertiary js-super-sidebar-toggle-expand super-sidebar-toggle -gl-ml-3" aria-controls="super-sidebar" aria-expanded="false" aria-label="Primary navigation sidebar" type="button"><svg class="s16 gl-icon gl-button-icon " data-testid="sidebar-icon"><use href="/assets/icons-ffa14d1d14478de17bd5c7220bf466194ad3bc99589858dae76a86bc89017324.svg#sidebar"></use></svg>
+
+</button>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"twn-devops-bootcamp","item":"https://gitlab.com/twn-devops-bootcamp"},{"@type":"ListItem","position":2,"name":"latest","item":"https://gitlab.com/twn-devops-bootcamp/latest"},{"@type":"ListItem","position":3,"name":"08-jenkins","item":"https://gitlab.com/twn-devops-bootcamp/latest/08-jenkins"},{"@type":"ListItem","position":4,"name":"jenkins-exercises","item":"https://gitlab.com/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises"},{"@type":"ListItem","position":5,"name":"Repository","item":"https://gitlab.com/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/blob/master/app/server.js?ref_type=heads"}]}
+
+
+</script>
+<div data-testid="breadcrumb-links" id="js-vue-page-breadcrumbs-wrapper">
+<div data-breadcrumbs-json="[{&quot;text&quot;:&quot;twn-devops-bootcamp&quot;,&quot;href&quot;:&quot;/twn-devops-bootcamp&quot;,&quot;avatarPath&quot;:&quot;/uploads/-/system/group/avatar/63750134/Digital_Badge_Designs.png&quot;},{&quot;text&quot;:&quot;latest&quot;,&quot;href&quot;:&quot;/twn-devops-bootcamp/latest&quot;,&quot;avatarPath&quot;:null},{&quot;text&quot;:&quot;08-jenkins&quot;,&quot;href&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins&quot;,&quot;avatarPath&quot;:null},{&quot;text&quot;:&quot;jenkins-exercises&quot;,&quot;href&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises&quot;,&quot;avatarPath&quot;:null},{&quot;text&quot;:&quot;Repository&quot;,&quot;href&quot;:&quot;/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/blob/master/app/server.js?ref_type=heads&quot;,&quot;avatarPath&quot;:null}]" id="js-vue-page-breadcrumbs"></div>
+<div id="js-injected-page-breadcrumbs"></div>
+</div>
+
+
+<div id="js-work-item-feedback"></div>
+
+
+</div>
+</div>
+
+</div>
+<div class="container-fluid container-limited project-highlight-puc">
+<main class="content" id="content-body" itemscope itemtype="http://schema.org/SoftwareSourceCode">
+<div class="flash-container flash-container-page sticky" data-testid="flash-container">
+<div id="js-global-alerts"></div>
+</div>
+
+
+
+<div class="js-hand-raise-lead-modal" data-submit-path="/-/subscriptions/hand_raise_leads" data-user="{&quot;namespace_id&quot;:63750134,&quot;user_name&quot;:&quot;chinenye.nw&quot;,&quot;first_name&quot;:&quot;Chinenye&quot;,&quot;last_name&quot;:&quot;&quot;,&quot;company_name&quot;:&quot;&quot;}"></div>
+
+
+
+<div class="js-signature-container" data-signatures-path="/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/commits/8cb527d12c8b6bf0da3fd52a5ab98dd6813893bb/signatures?limit=1"></div>
+
+<div class="tree-holder gl-pt-4" id="tree-holder">
+<div class="nav-block">
+<div class="tree-ref-container">
+<div class="tree-ref-holder gl-max-w-26">
+<div data-project-id="47527779" data-project-root-path="/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises" data-ref="master" data-ref-type="heads" id="js-tree-ref-switcher"></div>
+</div>
+<ul class="breadcrumb repo-breadcrumb">
+<li class="breadcrumb-item">
+<a href="/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/tree/master?ref_type=heads">jenkins-exercises
+</a></li>
+<li class="breadcrumb-item">
+<a href="/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/tree/master/app?ref_type=heads">app</a>
+</li>
+<li class="breadcrumb-item">
+<a href="/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/blob/master/app/server.js?ref_type=heads"><strong>server.js</strong>
+</a></li>
+</ul>
+</div>
+<div class="tree-controls gl-display-flex gl-flex-wrap gl-sm-flex-nowrap gl-align-items-baseline gl-gap-3">
+<button class="gl-button btn btn-md btn-default has-tooltip shortcuts-find-file" title="Go to file, press &lt;kbd class=&#39;flat ml-1&#39; aria-hidden=true&gt;/~&lt;/kbd&gt; or &lt;kbd class=&#39;flat ml-1&#39; aria-hidden=true&gt;t&lt;/kbd&gt;" aria-keyshortcuts="/+~ t" data-html="true" data-event-tracking="click_find_file_button_on_repository_pages" type="button"><span class="gl-button-text">
+Find file
+
+</span>
+
+</button>
+<a data-event-tracking="click_blame_control_on_blob_page" class="gl-button btn btn-md btn-default js-blob-blame-link" href="/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/blame/master/app/server.js?ref_type=heads"><span class="gl-button-text">
+Blame
+</span>
+
+</a>
+<a data-event-tracking="click_history_control_on_blob_page" class="gl-button btn btn-md btn-default " href="/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/commits/master/app/server.js?ref_type=heads"><span class="gl-button-text">
+History
+</span>
+
+</a>
+<a aria-keyshortcuts="y" class="gl-button btn btn-md btn-default has-tooltip js-data-file-blob-permalink-url" data-html="true" title="Go to permalink &lt;kbd class=&#39;flat ml-1&#39; aria-hidden=true&gt;y&lt;/kbd&gt;" href="/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/blob/ade6ff313d5a374890a16e75598ab81c31ef638f/app/server.js"><span class="gl-button-text">
+Permalink
+</span>
+
+</a>
+</div>
+</div>
+
+<div class="info-well gl-hidden sm:gl-block">
+<div class="well-segment">
+<ul class="blob-commit-info">
+<li class="commit flex-row js-toggle-container" id="commit-8cb527d1">
+<div class="avatar-cell gl-hidden sm:gl-block">
+<a href="/nanuchi"><img alt="Nana Janashia&#39;s avatar" src="https://secure.gravatar.com/avatar/5b61108cc6292e725f731a04d8aab84d52ef308ec5b9fbf603359f9cb2c92f24?s=160&amp;d=identicon" class="avatar s40 gl-hidden sm:gl-inline-block" title="Nana Janashia"></a>
+</div>
+<div class="commit-detail flex-list gl-display-flex gl-justify-content-space-between gl-align-items-center gl-flex-grow-1 gl-min-w-0">
+<div class="commit-content" data-testid="commit-content">
+<a class="commit-row-message item-title js-onboarding-commit-item " href="/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/commit/8cb527d12c8b6bf0da3fd52a5ab98dd6813893bb">final fixes</a>
+<span class="commit-row-message d-inline d-sm-none">
+&middot;
+8cb527d1
+</span>
+<div class="committer">
+<a class="commit-author-link js-user-link" data-user-id="1388850" href="/nanuchi">Nana Janashia</a> authored <time class="js-timeago" title="Jan 11, 2021 9:40am" datetime="2021-01-11T09:40:33Z" data-toggle="tooltip" data-placement="bottom" data-container="body">Jan 11, 2021</time>
+</div>
+
+</div>
+<div class="commit-actions flex-row">
+
+<div class="js-commit-pipeline-status" data-endpoint="/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/commit/8cb527d12c8b6bf0da3fd52a5ab98dd6813893bb/pipelines?ref=master"></div>
+<div class="commit-sha-group btn-group gl-hidden sm:gl-flex">
+<div class="label label-monospace monospace">
+8cb527d1
+</div>
+<button class="gl-button btn btn-icon btn-md btn-default " title="Copy commit SHA" aria-label="Copy commit SHA" aria-live="polite" data-toggle="tooltip" data-placement="bottom" data-container="body" data-html="true" data-category="primary" data-size="medium" data-clipboard-text="8cb527d12c8b6bf0da3fd52a5ab98dd6813893bb" type="button"><svg class="s16 gl-icon gl-button-icon " data-testid="copy-to-clipboard-icon"><use href="/assets/icons-ffa14d1d14478de17bd5c7220bf466194ad3bc99589858dae76a86bc89017324.svg#copy-to-clipboard"></use></svg>
+
+</button>
+
+</div>
+</div>
+</div>
+</li>
+
+</ul>
+</div>
+
+</div>
+<div data-ahead-compare-path="/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises/-/compare/master...master?from_project_id=23584006" data-behind-compare-path="/devops-bootcamp3/node-project/-/compare/master...master?from_project_id=47527779" data-can-sync-branch="false" data-project-path="twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises" data-selected-branch="master" data-source-default-branch="master" data-source-name="DevOps Bootcamp / exercise-nodejs" data-source-path="/devops-bootcamp3/node-project" id="js-fork-info"></div>
+<div class="blob-content-holder js-per-page" data-blame-per-page="1000" id="blob-content-holder">
+<div data-blob-path="app/server.js" data-can-download-code="true" data-explain-code-available="false" data-new-workspace-path="/-/remote_development/workspaces/new" data-original-branch="master" data-project-path="twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises" data-ref-type="heads" data-resource-id="gid://gitlab/Project/47527779" data-target-branch="master" data-user-id="gid://gitlab/User/9686269" id="js-view-blob-app">
+<div class="gl-spinner-container" role="status"><span aria-label="Loading" class="gl-spinner gl-spinner-md gl-spinner-dark gl-vertical-align-text-bottom!"></span></div>
+</div>
+</div>
+
+</div>
+<script nonce="e2Rx7TiPzn1vc2/kewdI6g==">
+//<![CDATA[
+  window.gl = window.gl || {};
+  window.gl.webIDEPath = '/-/ide/project/chinenye.nw/jenkins-exercises/edit/master/-/app/server.js'
+
+
+//]]>
+</script>
+<div data-ambiguous="false" data-ref="master" id="js-ambiguous-ref-modal"></div>
+
+</main>
+</div>
+
+
+</div>
+</div>
+
+
+<script nonce="e2Rx7TiPzn1vc2/kewdI6g==">
+//<![CDATA[
+if ('loading' in HTMLImageElement.prototype) {
+  document.querySelectorAll('img.lazy').forEach(img => {
+    img.loading = 'lazy';
+    let imgUrl = img.dataset.src;
+    // Only adding width + height for avatars for now
+    if (imgUrl.indexOf('/avatar/') > -1 && imgUrl.indexOf('?') === -1) {
+      const targetWidth = img.getAttribute('width') || img.width;
+      imgUrl += `?width=${targetWidth}`;
+    }
+    img.src = imgUrl;
+    img.removeAttribute('data-src');
+    img.classList.remove('lazy');
+    img.classList.add('js-lazy-loaded');
+    img.dataset.testid = 'js-lazy-loaded-content';
+  });
+}
+
+//]]>
+</script>
+<script nonce="e2Rx7TiPzn1vc2/kewdI6g==">
+//<![CDATA[
+gl = window.gl || {};
+gl.experiments = {};
+
+
+//]]>
+</script>
+
+</body>
+</html>
+
